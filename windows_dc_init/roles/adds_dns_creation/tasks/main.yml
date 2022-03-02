@@ -1,0 +1,42 @@
+---
+- name: Install Active Directory Domain Services, Domain Name System, and administration tools.
+  win_feature:
+    name: '{{ item }}'
+    include_management_tools: yes
+    include_sub_features: yes
+    state: present
+  with_items:
+  - AD-domain-services
+  - DNS
+  register: result01
+
+- name: Get ADDS result
+  debug:
+    msg: "{{result01}}"
+
+- name: Create new domain on the target host
+  win_domain:
+    domain_netbios_name: '{{ domain_var }}'
+    dns_domain_name: "{{ root_domain_var }}"
+    safe_mode_password: "{{ safeadminpass_var }}"
+  register: result02
+
+- name: Wait for reboot to finish.
+  win_reboot:
+    connect_timeout: 60
+    post_reboot_delay: 180
+    reboot_timeout: 1000
+  when: result02.reboot_required
+
+- name: Wait for WinRM service to start.
+  wait_for_connection:
+    timeout: 1000
+
+- name: Check to see if Windows server is a domain controller
+  win_domain_controller:
+      dns_domain_name: "{{ root_domain_var }}"
+      domain_admin_user: "{{ domain_username_var }}"
+      domain_admin_password: "{{ password_var }}"
+      safe_mode_password: "{{ safeadminpass_var }}"
+      state: domain_controller
+  register: result03

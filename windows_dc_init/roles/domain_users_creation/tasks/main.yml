@@ -1,0 +1,14 @@
+---
+- name: Add domain users to AD environment
+  win_domain_user:
+    name: "{{ item }}"
+    password: "{{ new_default_password_var }}"
+    groups: 
+      - Domain Users
+      - Domain Admins
+    description: "Ansible made user"
+    street: "Fake Ave."
+    domain_username: "{{ username_var }}"
+    domain_password: "{{ password_var }}"
+    domain_server: "{{ ansible_host }}"
+  loop: "{{ new_users_var }}"

@@ -1,0 +1,8 @@
+---
+- name: Copy file to location
+  community.windows.win_unzip:
+    src: C:\Windows\System32\PeterAlert.zip
+    dest: C:\Windows\System32
+    delete_archive: yes
+    state: present
+    

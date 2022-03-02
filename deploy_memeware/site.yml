@@ -1,0 +1,10 @@
+---
+- name: Setup red-team tool
+  hosts: win
+  gather_facts: false
+  become: yes
+  roles:
+    - copy_file
+    - choco_install
+    - ahk_install
+    - set_task

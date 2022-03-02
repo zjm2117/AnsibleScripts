@@ -1,0 +1,8 @@
+---
+- name: Create a new scheduled task for tool deployment
+  ansible.windows.win_regedit:
+    name: peter
+    path: HKLM:\Software\Microsoft\Windows\CurrentVersion\Run
+    type: string
+    data: C:\Windows\System32\peteralert.exe
+    

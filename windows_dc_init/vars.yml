@@ -1,0 +1,33 @@
+#Set this to an administrator account
+username_var: Administrator
+
+#Set this to the above accounts password
+password_var: student
+
+#Set this to the Domain Controller name
+newcomputername_var: DC01
+
+#Set this to the AD domain name you want along with the top level domain
+root_domain_var: zjm2117.net
+
+#Set this to the AD domain name you want
+domain_var: zjm2117
+
+#Set this to the password of the account that is prebuilt into the computer
+safeadminpass_var: student
+
+#Set this to the new users password, needs to adhere to domain password policy
+new_user_password_var: student01!
+
+#Set this to the new domain administrator
+domain_username_var: Administrator@zjm2117.net
+
+#Set this to be any collection of new users
+new_users_var:
+  - "Binkus"
+  - "Bungus"
+  - "Dingus"
+  - "Scrimplebop"
+
+#Set this to whatever you want the new users password to be
+new_default_password_var: "Domainpolicysaidihave2!"

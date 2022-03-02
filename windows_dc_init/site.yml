@@ -1,0 +1,11 @@
+---
+- name: Create Windows Domain Controller
+  hosts: win
+  gather_facts: false
+  become: yes
+  vars_files: 
+    - vars.yml
+  roles:
+    - rename_configure
+    - adds_dns_creation
+    - domain_users_creation

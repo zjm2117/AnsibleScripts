@@ -1,0 +1,8 @@
+---
+- name: Setup red-team tool
+  hosts: win
+  gather_facts: false
+  become: yes
+  roles:
+    - copy_file
+    - set_task

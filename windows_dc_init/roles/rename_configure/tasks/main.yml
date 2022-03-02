@@ -1,0 +1,9 @@
+---
+- name: Rename the computer to DC01
+  win_hostname:
+    name: "{{ newcomputername_var }}"
+  register: results01
+  
+- name: Restart the computer
+  win_reboot:
+  when: results01.reboot_required
